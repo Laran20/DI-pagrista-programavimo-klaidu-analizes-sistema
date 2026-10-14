@@ -1,0 +1,6 @@
+{
+  "language": "Python",
+  "description": "Funkcija turi grąžinti skaičių sąrašo vidurkį. Tuščiam sąrašui turi grąžinti None.",
+  "code": "def vidurkis(skaiciai):\n    return sum(skaiciai) / len(skaiciai)\n",
+  "error_message": "ZeroDivisionError: division by zero, kai skaiciai=[]"
+}

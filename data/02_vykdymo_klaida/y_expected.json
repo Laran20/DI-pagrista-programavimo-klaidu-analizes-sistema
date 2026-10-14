@@ -1,0 +1,10 @@
+{
+  "error_type": "vykdymo",
+  "explanation": "Tuščio sąrašo ilgis yra 0, todėl dalijama iš nulio.",
+  "corrected_code": "def vidurkis(skaiciai):\n    if not skaiciai:\n        return None\n    return sum(skaiciai) / len(skaiciai)\n",
+  "tests": [
+    "vidurkis([2, 4, 6]) == 4",
+    "vidurkis([]) is None"
+  ],
+  "prevention": "Prieš dalybą patikrinti, ar sąrašas netuščias."
+}

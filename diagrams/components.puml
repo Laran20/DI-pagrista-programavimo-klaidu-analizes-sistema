@@ -1,0 +1,20 @@
+@startuml
+title DI pagrįsta programavimo klaidų analizės sistema
+actor "Vartotojas" as User
+package "Google Colab prototipas" {
+  component "Įvestis ir validavimas" as Input
+  component "Užklausos sudarymas" as Prompt
+  component "Atsakymo validavimas
+ir sintaksės patikra" as Check
+  component "Rezultatų pateikimas" as View
+  database "JSON rezultatai" as Store
+}
+cloud "Gemini API" as Gemini
+User --> Input : Python kodas ir kontekstas
+Input --> Prompt : validuotas X
+Prompt --> Gemini : instrukcija ir X
+Gemini --> Check : sugeneruota analizė
+Check --> View : analizė ir patikros rezultatas
+Check --> Store : JSON
+View --> User : paaiškinimas ir taisymas
+@enduml

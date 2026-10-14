@@ -1,0 +1,11 @@
+{
+  "error_type": "logine",
+  "explanation": "Apskaičiuojama nuolaidos suma, o ne galutinė kaina. Nuolaidą reikia atimti iš pradinės kainos.",
+  "corrected_code": "def kaina_po_nuolaidos(kaina, nuolaida):\n    return kaina * (1 - nuolaida / 100)\n",
+  "tests": [
+    "kaina_po_nuolaidos(100, 20) == 80",
+    "kaina_po_nuolaidos(100, 0) == 100",
+    "kaina_po_nuolaidos(100, 100) == 0"
+  ],
+  "prevention": "Patikrinti tipinį atvejį ir ribines 0 % bei 100 % nuolaidas."
+}

@@ -1,0 +1,10 @@
+{
+  "error_type": "sintakses",
+  "explanation": "Funkcijos apibrėžimo pirmos eilutės pabaigoje trūksta dvitaškio.",
+  "corrected_code": "def suma(a, b):\n    return a + b\n",
+  "tests": [
+    "suma(2, 3) == 5",
+    "suma(-2, 2) == 0"
+  ],
+  "prevention": "Po def antraštės rašyti dvitaškį ir išlaikyti įtraukas."
+}

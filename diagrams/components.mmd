@@ -1,0 +1,10 @@
+flowchart TD
+  U["Vartotojas"] -->|"Python kodas ir kontekstas"| I["Įvestis ir validavimas"]
+  subgraph C["Google Colab prototipas"]
+    I -->|"validuotas X"| P["Užklausos sudarymas"]
+    A["Atsakymo validavimas ir sintaksės patikra"] --> V["Rezultatų pateikimas"]
+    A --> S[("JSON rezultatai")]
+  end
+  P -->|"instrukcija ir X"| G["Gemini API"]
+  G -->|"sugeneruota analizė"| A
+  V --> U

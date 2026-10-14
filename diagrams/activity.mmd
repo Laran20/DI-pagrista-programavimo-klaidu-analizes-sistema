@@ -1,0 +1,14 @@
+flowchart TD
+  S(["Pradžia"]) --> I["Priimti Python kodą ir kontekstą"]
+  I --> Q{"Įvestis tinkama?"}
+  Q -->|"ne"| E["Parodyti įvesties klaidą"]
+  Q -->|"taip"| P["Sudaryti instrukciją ir X"]
+  P --> G["Kreiptis į Gemini API"]
+  G --> R{"Gautas validus atsakymas?"}
+  R -->|"ne"| F["Parodyti API arba formato klaidą"]
+  R -->|"taip"| A["Patikrinti pataisyto kodo sintaksę"]
+  A --> T["Palyginti su y, jei demonstracinis pavyzdys"]
+  T --> O["Parodyti analizę ir išsaugoti JSON"]
+  E --> Z(["Pabaiga"])
+  F --> Z
+  O --> Z

@@ -1,0 +1,6 @@
+{
+  "language": "Python",
+  "description": "Funkcija turi grąžinti dviejų skaičių sumą.",
+  "code": "def suma(a, b)\n    return a + b\n",
+  "error_message": "SyntaxError: expected ':'"
+}

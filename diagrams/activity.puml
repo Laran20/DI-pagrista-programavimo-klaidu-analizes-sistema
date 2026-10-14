@@ -1,0 +1,18 @@
+@startuml
+start
+:Priimti Python kodą ir kontekstą;
+if (Įvestis tinkama?) then (taip)
+  :Sudaryti instrukciją ir X;
+  :Kreiptis į Gemini API;
+  if (Gautas validus atsakymas?) then (taip)
+    :Patikrinti pataisyto kodo sintaksę;
+    :Palyginti su y, jei tai demonstracinis pavyzdys;
+    :Parodyti analizę ir išsaugoti JSON;
+  else (ne)
+    :Parodyti API arba formato klaidą;
+  endif
+else (ne)
+  :Parodyti įvesties klaidą;
+endif
+stop
+@enduml

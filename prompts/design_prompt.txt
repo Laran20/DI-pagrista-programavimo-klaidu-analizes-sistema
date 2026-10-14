@@ -1,0 +1,5 @@
+Sukurk informacinės sistemos „DI pagrįsta programavimo klaidų analizės sistema“ projektą.
+Autorius: Liutauras Turauskis, DIPf-24. Pirmo namų darbo prototipas skirtas Python kodui.
+Vartotojas pateikia kodo fragmentą, norimą elgesį ir klaidos pranešimą. Sistema patikrina įvestį, sudaro užklausą Gemini API, gauna struktūrizuotą klaidos analizę, pataisytą kodą ir testavimo rekomendacijas. Atsakymas validuojamas, pataisyto kodo sintaksė patikrinama su ast.parse, rezultatas rodomas ir išsaugomas. API klaidų atveju parodyk aiškų pranešimą. Modeliui nesiųsk etaloninio y atsakymo.
+Pirmiausia pateik komponentų ir veiklos diagramas PlantUML sintakse. Po to tas pačias diagramas perrašyk Mermaid sintakse, išlaikydamas tą pačią prasmę. Toliau pateik Colab prototipo planą ir bent 3 (X,y) poras: sintaksės, vykdymo ir loginės klaidos.
+Paaiškink generatyvinio DI vaidmenį ir atskirk modelio sugeneruotą atsakymą nuo ranka parengto etalono. API rakto nesaugok kode.

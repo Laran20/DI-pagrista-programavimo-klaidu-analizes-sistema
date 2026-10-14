@@ -1,0 +1,6 @@
+{
+  "language": "Python",
+  "description": "Funkcija turi apskaičiuoti kainą po procentinės nuolaidos. kaina=100 ir nuolaida=20 turi duoti 80.",
+  "code": "def kaina_po_nuolaidos(kaina, nuolaida):\n    return kaina * nuolaida / 100\n",
+  "error_message": "Išimties nėra, tačiau vietoje 80 grąžinama 20."
+}
