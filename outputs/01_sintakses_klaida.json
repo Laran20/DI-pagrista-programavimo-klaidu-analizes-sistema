@@ -1,0 +1,28 @@
+{
+  "id": "01_sintakses_klaida",
+  "analysis": {
+    "error_type": "sintakses",
+    "explanation": "Klaida kilo todėl, kad Python kalboje funkcijos apibrėžimo (`def`) antraštė privalo baigtis dvitaškiu (`:`), kurio trūko pateiktame kode.",
+    "corrected_code": "def suma(a, b):\n    return a + b\n",
+    "tests": [
+      "suma(2, 3)",
+      "suma(-5, 5)"
+    ],
+    "prevention": "Rašydami Python kodą, visada atidžiai tikrinkite sintaksės elementus, tokius kaip dvitaškiai po `def`, `if`, `for` ir `while` teiginių."
+  },
+  "export_source": "saved_notebook_outputs",
+  "elapsed_seconds": 12.624,
+  "model": "gemini-3.5-flash-lite",
+  "input": {
+    "language": "Python",
+    "description": "Funkcija turi grąžinti dviejų skaičių sumą.",
+    "code": "def suma(a, b)\n    return a + b\n",
+    "error_message": "SyntaxError: expected ':'"
+  },
+  "expected_type": "sintakses",
+  "type_match": true,
+  "syntax": {
+    "valid": true,
+    "message": "Sintaksė tinkama"
+  }
+}
