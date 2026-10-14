@@ -10,9 +10,9 @@ Sistema skirta pradedančiajam programuotojui: pagal Python kodą, norimą elges
 2. [Google AI Studio](https://aistudio.google.com/apikey) susikurk API raktą. Colab kairėje **Secrets** sukurk `GOOGLE_API_KEY` ir įjunk **Notebook access**. Rakto į GitHub nekelk.
 3. Pasirink **Runtime → Run all**. GPU nereikia. Pavyzdžiai ir instrukcija yra užrašyne, papildomų failų įkelti nereikia.
 4. 7 žingsnyje turi pasirodyti **3/3** tikrų atsakymų; peržiūrėk pataisytą kodą, testus ir suvestinę. Jei modelis nepasiekiamas, pakeisk `MODEL` į paskyroje pasiekiamą tekstinį Gemini modelį. Kvotos klaidos atveju patikrink AI Studio kvotą ir pakartok vėliau.
-5. Atsisiųsk rezultatų ZIP ir išarchyvuok jo `outputs/` į saugyklą. Vykdytą `.ipynb` išsaugok per **File → Download → Download .ipynb** arba **Save a copy in GitHub**.
+5. Savo kodui analizuoti 9 žingsnyje pakeisk `custom_x` laukus ir nustatyk `RUN_CUSTOM = True`.
 
-**Patikrinta versija (2026-10-14):** Colab aplinkoje su `gemini-3.5-flash-lite` gauti 3/3 tikri Gemini atsakymai. Visos klaidų klasės sutapo su etalonais, sintaksės patikros praėjo. Po kodo peržiūros lokaliai atliktos 7 nepriklausomos funkcijų patikros – visos sėkmingos. Užrašyne išsaugotos tikros analizės išvestys; rezultatai pateikti [outputs/](outputs/). Pašalinta diagnostikos celė ir pagrindiniame kode nustatytas tas pats veikiantis modelis.
+**Patikrinta versija (2026-10-14):** Colab aplinkoje su `gemini-3.5-flash-lite` gauti 3/3 tikri Gemini atsakymai. Visos klaidų klasės sutapo su etalonais, sintaksės patikros praėjo. Po kodo peržiūros lokaliai atliktos 7 nepriklausomos funkcijų patikros – visos sėkmingos. Užrašyne išsaugotos tikros analizės išvestys; rezultatai pateikti [outputs/](outputs/).
 
 ## Struktūra
 ```text
@@ -29,8 +29,11 @@ prompts/
 diagrams/
   components.puml, activity.puml
   components.mmd, activity.mmd, README.md
-GITHUB_IR_COLAB.md
-GYNIMAS.md
+outputs/
+  01_sintakses_klaida.json
+  02_vykdymo_klaida.json
+  03_logine_klaida.json
+  summary.csv, verification.json
 requirements.txt
 ```
 
@@ -60,17 +63,6 @@ flowchart TD
 
 ## Vertinimas ir ribos
 Tikrinama atsakymo struktūra, pataisyto kodo sintaksė ir klaidos klasės atitiktis y; matuojama užklausos trukmė. Semantinis kodo teisingumas automatiškai neįrodomas: parengti nepriklausomi testai `checks`, tačiau modelio kodas automatiškai nevykdomas. Trys mokomieji pavyzdžiai nėra bendro sistemos tikslumo įvertis.
-
-## Atitiktis užduočiai
-| Reikalavimas | Kur įgyvendinta |
-|---|---|
-| 1.1 Tema ir generatyvinį DI naudojanti sistema | README ir užrašyno pradžia; Gemini API |
-| 1.1 Promptas, PlantUML, po to Mermaid | prompts/design_prompt.txt; diagrams/; užrašyno 1 skyrius |
-| 1.2.1 Bent 3 (X,y) poros | data/ ir užrašyno 4 žingsnis |
-| 1.2.1 Testavimo promptas | prompts/test_prompt.txt |
-| 1.2.2 Colab, Gemini, pavadinimas, apžvalga ir kodo paaiškinimas | .ipynb Markdown ir komentarai tarp kodo dalių |
-| 1.2.2 Visa veikimo eiga ir vizualizavimas | Užrašyno 7–8 žingsniai; vykdyti su savo API raktu |
-| .ipynb GitHub saugykloje | Užrašynas šios saugyklos šaknyje su tikromis 3/3 analizės išvestimis |
 
 ## Šaltiniai
 - [Oficialus Google Gen AI Python SDK](https://github.com/googleapis/python-genai)
