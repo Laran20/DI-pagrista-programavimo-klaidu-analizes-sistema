@@ -1,0 +1,86 @@
+{
+  "source": "local_checks_of_reviewed_saved_model_code",
+  "passed": 7,
+  "total": 7,
+  "checks": [
+    {
+      "id": "01_sintakses_klaida",
+      "function": "suma",
+      "args": [
+        2,
+        3
+      ],
+      "expected": 5,
+      "actual": 5,
+      "passed": true
+    },
+    {
+      "id": "01_sintakses_klaida",
+      "function": "suma",
+      "args": [
+        -2,
+        2
+      ],
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "id": "02_vykdymo_klaida",
+      "function": "vidurkis",
+      "args": [
+        [
+          2,
+          4,
+          6
+        ]
+      ],
+      "expected": 4,
+      "actual": 4.0,
+      "passed": true
+    },
+    {
+      "id": "02_vykdymo_klaida",
+      "function": "vidurkis",
+      "args": [
+        []
+      ],
+      "expected": null,
+      "actual": null,
+      "passed": true
+    },
+    {
+      "id": "03_logine_klaida",
+      "function": "kaina_po_nuolaidos",
+      "args": [
+        100,
+        20
+      ],
+      "expected": 80,
+      "actual": 80.0,
+      "passed": true
+    },
+    {
+      "id": "03_logine_klaida",
+      "function": "kaina_po_nuolaidos",
+      "args": [
+        100,
+        0
+      ],
+      "expected": 100,
+      "actual": 100.0,
+      "passed": true
+    },
+    {
+      "id": "03_logine_klaida",
+      "function": "kaina_po_nuolaidos",
+      "args": [
+        100,
+        100
+      ],
+      "expected": 0,
+      "actual": 0.0,
+      "passed": true
+    }
+  ]
+}
