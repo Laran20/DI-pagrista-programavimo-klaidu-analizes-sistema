@@ -12,7 +12,7 @@ Sistema skirta pradedančiajam programuotojui: pagal Python kodą, norimą elges
 4. 7 žingsnyje turi pasirodyti **3/3** tikrų atsakymų; peržiūrėk pataisytą kodą, testus ir suvestinę. Jei modelis nepasiekiamas, pakeisk `MODEL` į paskyroje pasiekiamą tekstinį Gemini modelį. Kvotos klaidos atveju patikrink AI Studio kvotą ir pakartok vėliau.
 5. Atsisiųsk rezultatų ZIP ir išarchyvuok jo `outputs/` į saugyklą. Vykdytą `.ipynb` išsaugok per **File → Download → Download .ipynb** arba **Save a copy in GitHub**.
 
-**Pateikto paketo būsena:** paruošta paleisti; tikra Gemini API užklausa rengiant paketą neatlikta, nes nepateiktas API raktas. Ranka parengti y etalonai nėra Gemini atsakymai. Galutiniam atsiskaitymui reikia įkelti vykdytą užrašyną su tikrais atsakymais.
+**Patikrinta versija (2026-10-14):** Colab aplinkoje su `gemini-3.5-flash-lite` gauti 3/3 tikri Gemini atsakymai. Visos klaidų klasės sutapo su etalonais, sintaksės patikros praėjo. Po kodo peržiūros lokaliai atliktos 7 nepriklausomos funkcijų patikros – visos sėkmingos. Užrašyne išsaugotos tikros analizės išvestys; rezultatai pateikti [outputs/](outputs/). Pašalinta diagnostikos celė ir pagrindiniame kode nustatytas tas pats veikiantis modelis.
 
 ## Struktūra
 ```text
@@ -37,9 +37,9 @@ requirements.txt
 ## Trys End-to-End pavyzdžiai
 | X | Tikėtinas y | Modelio rezultatas ŷ |
 |---|---|---|
-| `suma`: po def nėra dvitaškio | Sintaksės klaida; pridėti `:` | Sugeneruojamas paleidus užrašyną |
-| `vidurkis([])`: dalyba iš nulio | Vykdymo klaida; tuščiam sąrašui None | Sugeneruojamas paleidus užrašyną |
-| Kaina su 20 % nuolaida grąžina 20 vietoje 80 | Loginė klaida; atimti nuolaidą | Sugeneruojamas paleidus užrašyną |
+| `suma`: po def nėra dvitaškio | Sintaksės klaida; pridėti `:` | Gautas; klasė ir sintaksė teisingos |
+| `vidurkis([])`: dalyba iš nulio | Vykdymo klaida; tuščiam sąrašui None | Gautas; klasė ir sintaksė teisingos |
+| Kaina su 20 % nuolaida grąžina 20 vietoje 80 | Loginė klaida; atimti nuolaidą | Gautas; klasė ir sintaksė teisingos |
 
 Modeliui siunčiamas tik X. y naudojamas palyginimui po atsakymo. Generatyvinis DI papildomai neapmokomas. `prompts/test_prompt.txt` galima tiesiog nukopijuoti GPT agentui. Projektavimo užklausa ir PlantUML → Mermaid rezultatai yra `prompts/design_prompt.txt` bei [diagrams/README.md](diagrams/README.md).
 
@@ -70,9 +70,21 @@ Tikrinama atsakymo struktūra, pataisyto kodo sintaksė ir klaidos klasės atiti
 | 1.2.1 Testavimo promptas | prompts/test_prompt.txt |
 | 1.2.2 Colab, Gemini, pavadinimas, apžvalga ir kodo paaiškinimas | .ipynb Markdown ir komentarai tarp kodo dalių |
 | 1.2.2 Visa veikimo eiga ir vizualizavimas | Užrašyno 7–8 žingsniai; vykdyti su savo API raktu |
-| .ipynb GitHub saugykloje | Užrašynas šios saugyklos šaknyje; po Colab paleidimo atnaujinti versiją su tikrais rezultatais |
+| .ipynb GitHub saugykloje | Užrašynas šios saugyklos šaknyje su tikromis 3/3 analizės išvestimis |
 
 ## Šaltiniai
 - [Oficialus Google Gen AI Python SDK](https://github.com/googleapis/python-genai)
 - [Gemini API dokumentacija](https://ai.google.dev/gemini-api/docs)
 - Dėstytojo pateikti du demonstraciniai užrašynai; darbo eiga pritaikyta Python klaidų analizei.
+
+## Patikrinti rezultatai
+
+| Pavyzdys | Modelio klasė | Klasė ir sintaksė | Užklausos trukmė | Nepriklausomos patikros |
+|---|---|---|---|---|
+| suma | sintakses | teisingos | 12,624 s | 2/2 |
+| vidurkis | vykdymo | teisingos | 1,519 s | 2/2 |
+| kaina_po_nuolaidos | logine | teisingos | 26,139 s | 3/3 |
+
+Patikrintas dviejų skaičių sumavimas, įprasto ir tuščio sąrašo vidurkis bei 20 %, 0 % ir 100 % nuolaidos. Rezultatai: [summary.csv](outputs/summary.csv), [funkcijų patikrų duomenys](outputs/verification.json). JSON atsakymai eksportuoti iš užrašyne išsaugotų tikrų Gemini išvesčių; tai nėra naujas API paleidimas. Modelio siūlomi testai yra rekomendacijos; 7 nepriklausomos patikros atliktos atskirai peržiūrėtam kodui.
+
+Paleidus užrašyną iš naujo reikia savo API rakto. API modelio prieiga, apkrova ir projekto kvota gali kisti; išsaugotas sėkmingas paleidimas negarantuoja, kad kiekviena būsima užklausa pavyks.
