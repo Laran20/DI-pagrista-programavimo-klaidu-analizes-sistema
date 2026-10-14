@@ -14,6 +14,75 @@ Sistema skirta pradedančiajam programuotojui: pagal Python kodą, norimą elges
 
 **Patikrinta versija (2026-10-14):** Colab aplinkoje su `gemini-3.5-flash-lite` gauti 3/3 tikri Gemini atsakymai. Visos klaidų klasės sutapo su etalonais, sintaksės patikros praėjo. Po kodo peržiūros lokaliai atliktos 7 nepriklausomos funkcijų patikros – visos sėkmingos. Užrašyne išsaugotos tikros analizės išvestys; rezultatai pateikti [outputs/](outputs/).
 
+
+## Kaip patikrinti savo kodą
+
+### Ko reikia
+
+- Google paskyros, Google Colab ir savo Gemini API rakto su prieiga prie pasirinkto modelio bei laisva kvota.
+- Python kodo fragmento, kurį nori analizuoti.
+- Aiškaus aprašymo, ką kodas turi atlikti. Jei yra klaidos pranešimas, pateik jį kartu su aplinkybėmis, kada jis atsiranda.
+- GPU ar vietinio Python diegimo nereikia, jei dirbi Colab.
+
+### Įvesties reikalavimai
+
+| Laukas | Ką įrašyti | Ar būtinas? |
+|---|---|---|
+| `language` | `"Python"` | Taip; ši versija priima tik Python |
+| `description` | Pageidaujamas elgesys, pavyzdinė įvestis ir laukiamas rezultatas | Taip; negali būti tuščias |
+| `code` | Tikras kodo tekstas su išlaikytomis eilutėmis ir įtraukomis | Taip; negali būti tuščias |
+| `error_message` | Klaidos tekstas arba neteisingo rezultato aprašymas | Laukas būtinas; jei klaidos teksto nėra, galima `""` |
+
+Visa įvestis po JSON užkodavimo turi neviršyti **30 000 simbolių**. Tai bendra visų keturių laukų riba, o ne vien kodo ilgis. Rekomenduojama pateikti trumpą savarankišką funkciją ir jai suprasti būtiną kontekstą.
+
+Jei programa nesukelia išimties, bet grąžina neteisingą rezultatą, aprašyk, **ką gauni ir ką turėtum gauti**. Pavyzdžiui: „Kai kaina=100 ir nuolaida=20, gaunu 20, bet turėtų būti 80“.
+
+### Paleidimas
+
+1. Atidaryk užrašyną per **Atidaryti Google Colab** mygtuką.
+2. Colab **Secrets** sukurk `GOOGLE_API_KEY`, įrašyk savo raktą ir įjunk **Notebook access**.
+3. Naujoje sesijoje paleisk **2–6 žingsnius iš eilės**. Jie paruoš bibliotekas, API klientą, duomenis ir analizės funkcijas. Savo kodo analizei 7–8 demonstracinių žingsnių paleisti nebūtina.
+4. **9 žingsnyje „Savo kodo analizė“** pakeisk `custom_x` ir nustatyk `RUN_CUSTOM = True`. Pavyzdys:
+
+```python
+RUN_CUSTOM = True
+
+custom_x = {
+    "language": "Python",
+    "description": (
+        "Grąžinti pirmą sąrašo elementą. "
+        "Jei sąrašas tuščias, grąžinti None."
+    ),
+    "code": """def pirmas(sarasas):
+    return sarasas[0]
+""",
+    "error_message": "IndexError: list index out of range, kai sarasas=[]",
+}
+```
+
+5. Palik likusį 9 žingsnio kodą ir paleisk tą celę. Jis iškviečia `analyze_code(custom_x)`, parodo rezultatą ir išsaugo jį į JSON.
+6. Kitam fragmentui pakeisk šiuos laukus ir paleisk tik 9 žingsnį dar kartą. Kiekvienas toks paleidimas siunčia naują API užklausą.
+
+Trijų kabučių tekstas `"""..."""` leidžia įklijuoti kelių eilučių kodą. Išlaikyk originalias įtraukas. Jei pats analizuojamas kodas turi tris dvigubas kabutes, išoriniam tekstui naudok tris viengubas kabutes.
+
+### Ką gausi
+
+- Klaidos tipą: sintaksės, vykdymo, loginė arba neaiški.
+- Klaidos priežasties paaiškinimą.
+- Siūlomą visą pataisytą kodo fragmentą.
+- Bent du modelio pasiūlytus testavimo pavyzdžius.
+- Prevencijos patarimą, sintaksės patikros rezultatą ir užklausos trukmę.
+
+Rezultatas išsaugomas Colab sesijoje: `di_klaidu_analize/outputs/custom.json`. Jį gali atsisiųsti per kairėje esančią **Files** skiltį. Kitas sėkmingas savo kodo analizės paleidimas pakeičia šį failą. 10 žingsnio demonstracinių rezultatų ZIP savo kodo `custom.json` neįtraukia.
+
+### Apribojimai
+
+- `.py` failo turinį reikia nukopijuoti į `code`; failo įkėlimo ar visos GitHub saugyklos analizės funkcijos nėra.
+- Sistema neįdiegia tavo projekto priklausomybių, neatidaro jo duomenų failų ir automatiškai nevykdo pateikto ar pataisyto kodo.
+- Sintaksės patikra nepatvirtina programos logikos. Pataisymą ir pasiūlytus testus reikia peržiūrėti bei patikrinti savo aplinkoje.
+- Pateiktas kodas ir kontekstas siunčiami Gemini API. Į juos nedėk API raktų, slaptažodžių ar duomenų, kurių nenori siųsti paslaugai.
+- Jei gauni `429`, patikrink projekto kvotą; `503` reiškia paslaugos ar modelio nepasiekiamumą. Tokiais atvejais atsakymas neimituojamas.
+
 ## Struktūra
 ```text
 ND1_DI_programavimo_klaidu_analize.ipynb
