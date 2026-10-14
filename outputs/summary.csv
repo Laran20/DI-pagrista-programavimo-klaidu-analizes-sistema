@@ -1,0 +1,4 @@
+id,status,type_match,syntax_ok,seconds
+01_sintakses_klaida,gautas,True,True,12.624
+02_vykdymo_klaida,gautas,True,True,1.519
+03_logine_klaida,gautas,True,True,26.139
