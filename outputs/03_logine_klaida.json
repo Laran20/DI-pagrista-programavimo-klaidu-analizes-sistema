@@ -1,0 +1,28 @@
+{
+  "id": "03_logine_klaida",
+  "analysis": {
+    "error_type": "logine",
+    "explanation": "Funkcija grįžina 20, nes ji apskaičiuoja nuolaidos dydį (100 * 20 / 100 = 20), o ne galutinę kainą po nuolaidos. Norint gauti kainą po nuolaidos, reikia iš pradinės kainos atimti apskaičiuotą nuolaidos sumą arba dauginti kainą iš (1 - nuolaida / 100).",
+    "corrected_code": "def kaina_po_nuolaidos(kaina, nuolaida):\n    return kaina - (kaina * nuolaida / 100)\n",
+    "tests": [
+      "print(kaina_po_nuolaidos(100, 20))",
+      "print(kaina_po_nuolaidos(200, 10))"
+    ],
+    "prevention": "Rengiant matematines funkcijas, rekomenduojama atidžiai perskaityti užduoties sąlygą ir atlikti rankinį skaičiavimą arba parašyti vienetinius testus (unit tests) su žinomais rezultatais prieš pradedant naudoti kodą."
+  },
+  "export_source": "saved_notebook_outputs",
+  "elapsed_seconds": 26.139,
+  "model": "gemini-3.5-flash-lite",
+  "input": {
+    "language": "Python",
+    "description": "Funkcija turi apskaičiuoti kainą po procentinės nuolaidos. kaina=100 ir nuolaida=20 turi duoti 80.",
+    "code": "def kaina_po_nuolaidos(kaina, nuolaida):\n    return kaina * nuolaida / 100\n",
+    "error_message": "Išimties nėra, tačiau vietoje 80 grąžinama 20."
+  },
+  "expected_type": "logine",
+  "type_match": true,
+  "syntax": {
+    "valid": true,
+    "message": "Sintaksė tinkama"
+  }
+}
