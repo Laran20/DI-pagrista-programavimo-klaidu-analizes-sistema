@@ -1,6 +1,6 @@
 # DI pagrįsta programavimo klaidų analizės sistema
 **1 namų darbas · Liutauras Turauskis · DIPf-24**
-## ND1 papildomos užduotys 1.3–1.5
+## ND1 užduotys 1.3–1.5
 
 Penki pritaikyti užrašynai (NN, Decision Forests, CNN ir perkėlimo mokymasis): **[atidaryti katalogą ir Colab nuorodas](ND1_1_3_1_5/README.md)**.
 
