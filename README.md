@@ -2,9 +2,9 @@
 **1 namų darbas · Liutauras Turauskis · DIPf-24**
 ## ND1 užduotys 1.3–1.5
 
-Penki pritaikyti užrašynai (NN, Decision Forests, CNN ir perkėlimo mokymasis): **[atidaryti katalogą ir Colab nuorodas](ND1_1_3_1_5/README.md)**.
+Visos 1.3–1.5 užduotys sujungtos į **[vieną Colab užrašyną](https://colab.research.google.com/github/Laran20/DI-pagrista-programavimo-klaidu-analizes-sistema/blob/main/ND1_1_3_1_5/ND1_1_3_1_5.ipynb)**: NN, Decision Forests, CNN ir perkėlimo mokymasis. [Aprašymas ir paleidimas](ND1_1_3_1_5/README.md).
 
-Jiems Gemini API rakto nereikia. Sintaksė patikrinta; visas mokymas ir išvestys dar turi būti patikrinti Colab.
+Gemini API rakto nereikia. Sujungto failo sintaksė ir priklausomybės patikrintos; visas mokymas ir išvestys dar turi būti patikrinti Colab.
 
 
 [![Atidaryti Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Laran20/DI-pagrista-programavimo-klaidu-analizes-sistema/blob/main/ND1_DI_programavimo_klaidu_analize.ipynb)
